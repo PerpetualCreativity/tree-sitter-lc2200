@@ -1,0 +1,71 @@
+============
+instructions
+============
+
+add $zero, $zero, $zero
+
+---
+
+(source_file
+  (instr (reg) (reg) (reg)))
+
+
+======
+labels
+======
+
+loop0:
+  beq $zero, $zero, loop0
+
+---
+
+(source_file
+  (label)
+  (instr (reg) (reg) (idlabel)))
+
+
+========
+comments
+========
+
+! this is a test
+add $zero, $zero, $zero ! comment
+
+---
+
+(source_file
+  (comment)
+  (instr (reg) (reg) (reg))
+  (comment))
+
+
+======
+number
+======
+
+addi $t0, $t1, -12
+addi $t0, $t1, 23
+addi $t0, $t1, 0xAa1
+
+---
+
+(source_file
+  (instr (reg) (reg) (num))
+  (instr (reg) (reg) (num))
+  (instr (reg) (reg) (num)))
+
+
+======
+offset from register
+======
+
+lw $t0, -5($t0)
+lw $t0, 10($t0)
+lw $t0, 0x2($t0)
+
+---
+
+(source_file
+  (instr (reg) (offreg (num) (reg)))
+  (instr (reg) (offreg (num) (reg)))
+  (instr (reg) (offreg (num) (reg))))
