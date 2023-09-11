@@ -20,15 +20,26 @@ loop0:
 ---
 
 (source_file
-  (label)
+  (idlabel)
   (instr (reg) (reg) (idlabel)))
 
+
+===========
+num offsets
+===========
+
+lea $ra, 1
+
+---
+
+(source_file
+  (instr (reg) (num)))
 
 ========
 comments
 ========
 
-! this is a test
+! this is a test. add
 add $zero, $zero, $zero ! comment
 
 ---

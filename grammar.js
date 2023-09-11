@@ -4,13 +4,16 @@ module.exports = grammar({
     source_file: $ => repeat($._statement),
 
     _statement: $ => choice(
-      $.label,
+      $._label,
       $.instr,
       $.comment,
     ),
 
-    label: _ => /[a-zA-Z]\w*:/,
     idlabel: _ => /[a-zA-Z]\w*/,
+    _label: $ => seq(
+      $.idlabel,
+      ":"
+    ),
     comment: _ => /!.*/,
     reg: _ => choice(
       "$zero",
@@ -36,6 +39,10 @@ module.exports = grammar({
       "(",
       $.reg,
       ")",
+    ),
+    _offset: $ => choice(
+      $.num,
+      $.idlabel,
     ),
     instr: $ => choice(
       seq("add",
@@ -64,7 +71,7 @@ module.exports = grammar({
       seq("beq",
         $.reg, ",",
         $.reg, ",",
-        $.idlabel,
+        $._offset,
       ),
       seq("jalr",
         $.reg, ",",
@@ -75,16 +82,16 @@ module.exports = grammar({
       seq("blt",
         $.reg, ",",
         $.reg, ",",
-        $.idlabel,
+        $._offset,
       ),
       seq("lea",
         $.reg, ",",
-        $.idlabel,
+        $._offset,
       ),
       seq("bgt",
         $.reg, ",",
         $.reg, ",",
-        $.idlabel,
+        $._offset,
       ),
       seq("or",
         $.reg, ",",
