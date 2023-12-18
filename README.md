@@ -2,7 +2,7 @@
 
 This is a [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) parser for LC-2200 assembly, used in Georgia Tech's CS 2200 course.
 
-At this time, it can parse all the syntax, but does not include necessary files for [syntax highlighting support](https://tree-sitter.github.io/tree-sitter/syntax-highlighting).
+At this time, it can parse all the syntax, but does not include necessary files for [syntax highlighting support](https://tree-sitter.github.io/tree-sitter/syntax-highlighting), since this needs to be created for each editor. PRs welcome.
 
 ## Building locally
 
